@@ -2,7 +2,7 @@
 
 import random
 help(random) #I have no clue how to use this thing... Gotta look it up!
-
+        
 secret = random.randrange(1000)
 
 while True:
@@ -11,7 +11,7 @@ while True:
         break
     number = int(guess)
     if number < secret:
-        if secret - number < 100: #Making the game more complicated and probably less efficient but worth the practice...
+        if secret - number < 100: ##Making the game more complicated and probably less efficient but worth the practice...
             print("Low but almost there!")
         else:
             print("Too low! Long way to go!")
@@ -24,3 +24,4 @@ while True:
         print("Yay! You got it!!")
 
 #Fastest way is to start at n/2 (n = 1000 in this case)?
+#Is there any way I can do to help reduce the guesses?
