@@ -34,3 +34,5 @@ while True:
         number = int(value)
         print(number, "degree Celcius is", number / (5/9) + 32, "degree Fahrenheit")
 #How do I continue with my conversion choice without having to specify the prompt after each conversion? SOLVED- Change "if" to "while"
+
+#FUN CHALLENGE: Real-time currency exchange converter.
