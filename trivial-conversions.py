@@ -1,5 +1,3 @@
-# These are super basic converters...
-
 # Minutes to hours
 
 while True:
