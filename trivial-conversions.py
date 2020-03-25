@@ -1,4 +1,6 @@
-# Converting minutes to hours
+# These are super basic converters...
+
+# Minutes to hours
 
 while True:
     value = input("Minutes to hours, please [q to quit]: ")
@@ -6,3 +8,5 @@ while True:
         break
     number = int(value)
     print(number, "minutes is", number / 60, "hours")
+
+  
