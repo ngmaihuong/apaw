@@ -1,10 +1,21 @@
 # Minutes to hours
 while True:
-    value = input("Minutes to hours, please [q to quit]: ")
-    if value == 'q':
+    prompt = input("Minutes to hours [please type 1] or Hours to minutes [please type 2], please [q to quit]: ")
+    if prompt == 'q':
         break
-    number = int(value)
-    print(number, "minutes is", number / 60, "hours")
+    if prompt == "1":
+        value = input("Minutes to hours, please [q to quit]: ")
+        if value == 'q':
+            break
+        number = int(value)
+        print(number, "minutes is", number / 60, "hours")
+    if prompt == "2":
+        value = input("Hours to minutes, please [q to quit]: ")
+        if value == 'q':
+            break
+        number = int(value)
+        print(number, "hours is", number * 60, "minutes")
+#See question below.
 
 # Fahrenheit to Celcius
 while True:
