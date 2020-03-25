@@ -23,5 +23,4 @@ while True:
     else:
         print("Yay! You got it!!")
 
- 
 #Fastest way is to start at n/2 (n = 1000 in this case)?
