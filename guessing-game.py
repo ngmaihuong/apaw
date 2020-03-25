@@ -11,10 +11,17 @@ while True:
         break
     number = int(guess)
     if number < secret:
-        print("Too low!")
+        if secret - number < 100: #Making the game more complicated and probably less efficient but worth the practice...
+            print("Low but almost there!")
+        else:
+            print("Too low! Long way to go!")
     elif number > secret:
-        print("Too high!")
+        if number - secret < 100:
+            print("High but almost there!")
+        else:
+            print("Too high! Long way to go!")
     else:
         print("Yay! You got it!!")
+
  
 #Fastest way is to start at n/2 (n = 1000 in this case)?
