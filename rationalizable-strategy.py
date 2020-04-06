@@ -49,71 +49,26 @@ for row in game:
     print(row)
 
 #Find dominant strategies for P2
-pov = 1
-i = pov + 1
-
-print("\nRound/Row", pov, "Count Executed")
-ct = []
-offset = 1
-for row in range(1, ROW_SIZE):
-    if game[row][pov][1] > game[row][i][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-    
-    while ct.count('Y') == 4 and offset in range(1, ROW_SIZE):
-        del game[offset][i]
-        offset += 1
-    while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
-        del game[offset][pov]
-        offset += 1        
-
-#print('\n')
-for row in game:
-    print(row)
-
-pov = 2
-i = pov + 1
-
-print("\nRound/Row", pov, "Count Executed")
-ct = []
-offset = 1
-for row in range(1, ROW_SIZE):
-    if game[row][pov][1] > game[row][i][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-    
-    while ct.count('Y') == 4 and offset in range(1, ROW_SIZE):
-        del game[offset][i]
-        offset += 1
-    while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
-        del game[offset][pov]
-        offset += 1 
-
-#print('\n')
-for row in game:
-    print(row)
-
-#pov = 3
+#pov = 1
 #i = pov + 1
 
-print("\nRound/Row", pov, "Count Executed")
-ct = []
-offset = 1
-for row in range(1, ROW_SIZE):
-    if game[row][pov][1] > game[row][i][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-    
-    while ct.count('Y') == 4 and offset in range(1, ROW_SIZE):
-        del game[offset][i]
-        offset += 1
-    while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
-        del game[offset][pov]
-        offset += 1
+for pov in range(1, len(game[-1])):
+    for i in range(pov+1, len(game[-1])-1): #error: i=4 in range (4,3)
+        print("\nRound", pov, "Count Executed")
+        ct = []
+        offset = 0
+        for row in range(1, len(game[-1])):
+            if game[row][pov][1] > game[row][i][1]:
+                ct.append('Y')
+            else:
+                ct.append('N')
+                
+            while ct.count('Y') == 4 and offset in range(len(game[-1])):
+                del game[offset][i]
+                offset += 1
+            while ct.count('N') == 4 and offset in range(len(game[-1])):
+                del game[offset][pov]
+                offset += 1
 
-#print('\n')
 for row in game:
     print(row)
