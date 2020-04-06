@@ -1,5 +1,4 @@
 # Try to write a program to find the set of rationalizable strategies in Chapter 7 games (Game Theory)
-# Create a grid/matrix
 
 #Note: Very raw code I am still trying to figure out
 # Create a grid/matrix
@@ -53,8 +52,8 @@ for row in game:
 #i = pov + 1
 
 for pov in range(1, len(game[-1])):
-    for i in range(pov+1, len(game[-1])-1): #error: i=4 in range (4,3)
-        print("\nRound", pov, "Count Executed")
+    for i in range(pov+1, len(game[-1])-1): #hidden error: i=4 in range (4,3)     
+        print("\nComparing all with column", pov)
         ct = []
         offset = 0
         for row in range(1, len(game[-1])):
@@ -69,6 +68,6 @@ for pov in range(1, len(game[-1])):
             while ct.count('N') == 4 and offset in range(len(game[-1])):
                 del game[offset][pov]
                 offset += 1
-
+print('\n')
 for row in game:
     print(row)
