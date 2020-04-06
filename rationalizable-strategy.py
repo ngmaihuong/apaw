@@ -3,6 +3,7 @@
 
 #Note: Very raw code I am still trying to figure out
 # Create a grid/matrix
+
 COL_SIZE = 5
 ROW_SIZE = 5
 print('Grid Size =', ROW_SIZE, "x", COL_SIZE)
@@ -46,77 +47,87 @@ game[4].extend(P1_4)
 
 for row in game:
     print(row)
-print('\n')
+
 #Find dominant strategies for P2
-
-compr = []
-
-for row in range(ROW_SIZE):
-    compr.append([])
-    compr[0] = [(1,2)]
-    for col in range(0, 1):
-        compr[0].extend(P2_CHOICE)
-compr[1].extend(['w', [0,0], [0,0], [0,0], [0,0]])
-compr[2].extend(['x', [0,0], [0,0], [0,0], [0,0]])
-compr[3].extend(['y', [0,0], [0,0], [0,0], [0,0]])
-compr[4].extend(['z', [0,0], [0,0], [0,0], [0,0]])
-
-for row in compr:
-    print(row)
-print('\n')
-
+print("\nRound/Row 1 Count")
+ct = []
 for row in range(1, ROW_SIZE):
     if game[row][1][1] > game[row][2][1]:
-        compr[row][1][1] = 'Y'
+        ct.append('Y')
     else:
-        compr[row][1][1] = 'N'
-"""
-if game[1][1][1] > game[1][2][1]:
-    compr[1][1][1] = 'Y'
-else:
-    compr[1][1][1] = 'N'
-    
-if game[2][1][1] > game[2][2][1]:
-    compr[2][1][1] = 'Y'
-else:
-    compr[2][1][1] = 'N'  
-if game[3][1][1] > game[3][2][1]:
-    compr[3][1][1] = 'Y'
-else:
-    compr[3][1][1] = 'N'
-if game[4][1][1] > game[4][2][1]:
-    compr[4][1][1] = 'Y'
-else:
-    compr[4][1][1] = 'N'
-"""
-print(compr)
-
-"""
-offset = 2
-while offset < ROW_SIZE:
-    for row in range(1, ROW_SIZE):
-#        compr.append([])
-#        for col in range(1, COL_SIZE):
-        if game[row][1][1] > game[row][offset][1]:
-            compr[row][1][1] = 'Y'
-        else:
-            compr[row][1][1] = 'N'
-    offset += 1
-print(compr)
-"""
-"""
-next_gen = []
-for row in range(GRIDSIZE+2):
-    next_gen.append([])
-    for col in range(GRIDSIZE+2):
-        if row == 0 or row == (GRIDSIZE+1):
-            next_gen[row].append(0)
-        elif col == 0 or col == (GRIDSIZE+1):
-            next_gen[row].append(0)
-        else:
-            score = 0
-            for x in range(-1, 2):
-                score += grid[row+x][col-1:col+2].count(1)
-            score -= grid[row][col]
-            next_gen[row].append(score)
-"""
+        ct.append('N')
+        
+    if ct.count('Y') == 4:
+        del game[row][2]
+    else:
+        pass
+print(ct)
+ct = []
+for row in range(1, ROW_SIZE):
+    if game[row][1][1] > game[row][3][1]:
+        ct.append('Y')
+    else:
+        ct.append('N')
+        
+    if ct.count('Y') == 4:
+        del game[row][3]
+    else:
+        pass 
+print(ct)
+ct = []
+for row in range(1, ROW_SIZE):
+    if game[row][1][1] > game[row][4][1]:
+        ct.append('Y')
+    else:
+        ct.append('N')
+        
+    if ct.count('Y') == 4:
+        del game[row][4]
+    else:
+        pass
+print(ct)
+print("\nRound/Row 2 Count")
+ct = []
+for row in range(1, ROW_SIZE):
+    if game[row][2][1] > game[row][3][1]:
+        ct.append('Y')
+    else:
+        ct.append('N')
+        
+    if ct.count('Y') == 4:
+        del game[row][3]
+    else:
+        pass
+print(ct)
+ct = []
+for row in range(1, ROW_SIZE):
+    if game[row][2][1] > game[row][4][1]:
+        ct.append('Y')
+    else:
+        ct.append('N')
+        
+    if ct.count('Y') == 4:
+        del game[row][4]
+        print('Delete this row')
+    else:
+        pass
+print(ct)
+print("\nRound/Row 3 Count")
+ct = []
+for row in range(1, ROW_SIZE):
+    if game[row][3][1] > game[row][4][1]:
+        ct.append('Y')
+    else:
+        ct.append('N')
+        
+    if ct.count('Y') == 4:
+        del game[1][4]
+        del game[2][4]
+        del game[3][4]
+        del game[4][4]
+        print(ct, 'Delete this row')
+    else:
+        pass
+print('\n')
+for row in game:
+    print(row)
