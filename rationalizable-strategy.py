@@ -67,81 +67,12 @@ for row in range(1, ROW_SIZE):
     while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
         del game[offset][pov]
         offset += 1        
-"""
-for row in range(1, ROW_SIZE):
-    if game[row][1][1] > game[row][2][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-        
-    if ct.count('Y') == 4:
-        del game[row][2]
-    elif ct.count('N') == 4:
-        print(ct, 'Delete this column')    
-    else:
-        pass
-print(ct)
-ct = []
-for row in range(1, ROW_SIZE):
-    if game[row][1][1] > game[row][3][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-        
-    if ct.count('Y') == 4:
-        del game[row][3]
-    elif ct.count('N') == 4:
-        print(ct, 'Delete this column')    
-    else:
-        pass 
-print(ct)
-ct = []
-for row in range(1, ROW_SIZE):
-    if game[row][1][1] > game[row][4][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-        
-    if ct.count('Y') == 4:
-        del game[row][4]
-    elif ct.count('N') == 4:
-        print(ct, 'Delete this column')    
-    else:
-        pass
-print(ct)
-"""
-print("\nRound/Row 2 Count")
-ct = []
-for row in range(1, ROW_SIZE):
-    if game[row][2][1] > game[row][3][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-        
-    if ct.count('Y') == 4:
-        del game[row][3]
-    elif ct.count('N') == 4:
-        print(ct, 'Delete this column')    
-    else:
-        pass
-print(ct)
-ct = []
-for row in range(1, ROW_SIZE):
-    if game[row][2][1] > game[row][4][1]:
-        ct.append('Y')
-    else:
-        ct.append('N')
-        
-    if ct.count('Y') == 4:
-        del game[row][4]
-        print('Delete the other column')
-    elif ct.count('N') == 4:
-        print(ct, 'Delete this column')    
-    else:
-        pass
-print(ct)
 
-pov = 3
+#print('\n')
+for row in game:
+    print(row)
+
+pov = 2
 i = pov + 1
 
 print("\nRound/Row", pov, "Count Executed")
@@ -158,27 +89,31 @@ for row in range(1, ROW_SIZE):
         offset += 1
     while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
         del game[offset][pov]
-        offset += 1
-"""
-print("\nRound/Row 3 Count")
+        offset += 1 
+
+#print('\n')
+for row in game:
+    print(row)
+
+#pov = 3
+#i = pov + 1
+
+print("\nRound/Row", pov, "Count Executed")
 ct = []
+offset = 1
 for row in range(1, ROW_SIZE):
-    if game[row][3][1] > game[row][4][1]:
+    if game[row][pov][1] > game[row][i][1]:
         ct.append('Y')
     else:
         ct.append('N')
-        
-    if ct.count('Y') == 4:
-        print(ct, 'Delete the other column')
-        del game[1][4]
-        del game[2][4]
-        del game[3][4]
-        del game[4][4]
-    elif ct.count('N') == 4:
-        print(ct, 'Delete this column')
-    else:
-        pass
-"""
-print('\n')
+    
+    while ct.count('Y') == 4 and offset in range(1, ROW_SIZE):
+        del game[offset][i]
+        offset += 1
+    while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
+        del game[offset][pov]
+        offset += 1
+
+#print('\n')
 for row in game:
     print(row)
