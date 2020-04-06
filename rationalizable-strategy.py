@@ -49,8 +49,25 @@ for row in game:
     print(row)
 
 #Find dominant strategies for P2
-print("\nRound/Row 1 Count")
+pov = 1
+i = pov + 1
+
+print("\nRound/Row", pov, "Count Executed")
 ct = []
+offset = 1
+for row in range(1, ROW_SIZE):
+    if game[row][pov][1] > game[row][i][1]:
+        ct.append('Y')
+    else:
+        ct.append('N')
+    
+    while ct.count('Y') == 4 and offset in range(1, ROW_SIZE):
+        del game[offset][i]
+        offset += 1
+    while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
+        del game[offset][pov]
+        offset += 1        
+"""
 for row in range(1, ROW_SIZE):
     if game[row][1][1] > game[row][2][1]:
         ct.append('Y')
@@ -59,6 +76,8 @@ for row in range(1, ROW_SIZE):
         
     if ct.count('Y') == 4:
         del game[row][2]
+    elif ct.count('N') == 4:
+        print(ct, 'Delete this column')    
     else:
         pass
 print(ct)
@@ -71,6 +90,8 @@ for row in range(1, ROW_SIZE):
         
     if ct.count('Y') == 4:
         del game[row][3]
+    elif ct.count('N') == 4:
+        print(ct, 'Delete this column')    
     else:
         pass 
 print(ct)
@@ -83,9 +104,12 @@ for row in range(1, ROW_SIZE):
         
     if ct.count('Y') == 4:
         del game[row][4]
+    elif ct.count('N') == 4:
+        print(ct, 'Delete this column')    
     else:
         pass
 print(ct)
+"""
 print("\nRound/Row 2 Count")
 ct = []
 for row in range(1, ROW_SIZE):
@@ -96,6 +120,8 @@ for row in range(1, ROW_SIZE):
         
     if ct.count('Y') == 4:
         del game[row][3]
+    elif ct.count('N') == 4:
+        print(ct, 'Delete this column')    
     else:
         pass
 print(ct)
@@ -108,10 +134,32 @@ for row in range(1, ROW_SIZE):
         
     if ct.count('Y') == 4:
         del game[row][4]
-        print('Delete this row')
+        print('Delete the other column')
+    elif ct.count('N') == 4:
+        print(ct, 'Delete this column')    
     else:
         pass
 print(ct)
+
+pov = 3
+i = pov + 1
+
+print("\nRound/Row", pov, "Count Executed")
+ct = []
+offset = 1
+for row in range(1, ROW_SIZE):
+    if game[row][pov][1] > game[row][i][1]:
+        ct.append('Y')
+    else:
+        ct.append('N')
+    
+    while ct.count('Y') == 4 and offset in range(1, ROW_SIZE):
+        del game[offset][i]
+        offset += 1
+    while ct.count('N') == 4 and offset in range(1, ROW_SIZE):
+        del game[offset][pov]
+        offset += 1
+"""
 print("\nRound/Row 3 Count")
 ct = []
 for row in range(1, ROW_SIZE):
@@ -121,13 +169,16 @@ for row in range(1, ROW_SIZE):
         ct.append('N')
         
     if ct.count('Y') == 4:
+        print(ct, 'Delete the other column')
         del game[1][4]
         del game[2][4]
         del game[3][4]
         del game[4][4]
-        print(ct, 'Delete this row')
+    elif ct.count('N') == 4:
+        print(ct, 'Delete this column')
     else:
         pass
+"""
 print('\n')
 for row in game:
     print(row)
