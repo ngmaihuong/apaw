@@ -33,7 +33,7 @@ P1_4 = ['z', [4,4], [5,9], [4,10], [10,9]]
 
 for row in range(ROW_SIZE):
     game.append([])
-    game[0] = [(1,2)]
+    game[0] = [[1,2]]
     for col in range(0, 1):
         game[0].extend(P2_CHOICE)
 game[1].extend(P1_1)
@@ -45,8 +45,6 @@ for row in game:
     print(row)
 
 #Find dominant strategies for P2
-#pov = 1
-#i = pov + 1
 
 for pov in range(1, len(game[-1])):
     if pov+1 < len(game[-1])-1:
@@ -60,10 +58,10 @@ for pov in range(1, len(game[-1])):
                 else:
                     ct.append('N')
                     
-                while ct.count('Y') == 4 and offset in range(len(game[-1])):
+                while ct.count('Y') == ROW_SIZE-1 and offset in range(len(game)):
                     del game[offset][i]
                     offset += 1
-                while ct.count('N') == 4 and offset in range(len(game[-1])):
+                while ct.count('N') == ROW_SIZE-1 and offset in range(len(game)):
     #                print('Delete strategy', game[0][pov], 'because it is dominated.')
                     del game[offset][pov]
                     offset += 1              
@@ -81,15 +79,162 @@ for pov in range(1, len(game[-1])):
                 else:
                     ct.append('N')
                     
-                while ct.count('Y') == 4 and offset in range(len(game)):
+                while ct.count('Y') == ROW_SIZE-1 and offset in range(len(game)):
                     del game[offset][i]
                     offset += 1
-                while ct.count('N') == 4 and offset in range(len(game)):
+                while ct.count('N') == ROW_SIZE-1 and offset in range(len(game)):
     #                print('Delete strategy', game[0][pov], 'because it is dominated.')
                     del game[offset][pov]
                     offset += 1  
     else:
         break
-print('\n')
+
+print('\nUndominated Strategies for Player 2')
 for row in game:
     print(row)
+
+#Find dominant strategies for P1
+    
+    #Transpose the table
+trans_game = [[game[y][x] for y in range(len(game))] for x in range(len(game[0]))]
+#print('\n')
+#for row in trans_game:
+#    print(row)
+
+for pov in range(1, len(trans_game[-1])):
+    if pov+1 < len(trans_game[-1])-1:
+        for i in range(pov+1, len(trans_game[-1])-1):    
+            print("\nComparing all with column", pov)
+            ct = []
+            offset = 0
+            for row in range(1, len(trans_game)):
+                if trans_game[row][pov][0] > trans_game[row][i][0]:
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == len(trans_game)-1 and offset in range(len(trans_game)):
+                    del trans_game[offset][i]
+                    offset += 1
+                while ct.count('N') == len(trans_game)-1 and offset in range(len(trans_game)):
+                    del trans_game[offset][pov]
+                    offset += 1              
+
+    elif COL_SIZE > pov+1 > len(trans_game[-1])-1:
+        for i in range(len(trans_game[-1])-1, pov+1):    
+            print("\nComparing all with column", pov)
+            ct = []
+            offset = 0
+            for row in range(1, len(trans_game)): 
+                if trans_game[row][pov-1][0] > trans_game[row][i][0]:
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == len(trans_game)-1 and offset in range(len(trans_game)):
+                    del trans_game[offset][i]
+                    offset += 1
+                while ct.count('N') == len(trans_game)-1 and offset in range(len(trans_game)):
+                    del trans_game[offset][pov]
+                    offset += 1  
+    else:
+        break
+
+print('\nUndominated Strategies for Player 1')
+for row in trans_game:
+    print(row)
+
+trans_game_1 = [[trans_game[y][x] for y in range(len(trans_game))] for x in range(len(trans_game[0]))]
+
+for pov in range(1, len(trans_game_1[-1])):
+    if pov+1 < len(trans_game_1[-1]):
+        for i in range(pov+1, len(trans_game_1[-1])-1):    
+            print("\nComparing all with column", pov)
+            ct = []
+            offset = 0
+            for row in range(1, len(trans_game_1)):
+                if trans_game_1[row][pov][1] > trans_game_1[row][i][1]:
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == len(trans_game_1)-1 and offset in range(len(trans_game_1)):
+                    del trans_game[offset][i]
+                    offset += 1
+                while ct.count('N') == len(trans_game_1)-1 and offset in range(len(trans_game_1)):
+                    del trans_game[offset][pov]
+                    offset += 1              
+
+    elif COL_SIZE > pov+1 > len(trans_game_1[-1])-1:
+        for i in range(len(trans_game_1[-1])-1, pov+1):    
+            print("\nComparing all with column", pov)
+            ct = []
+            offset = 0
+            for row in range(1, len(trans_game_1)): 
+                if trans_game_1[row][pov-1][1] > trans_game_1[row][i][1]:
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == len(trans_game_1)-1 and offset in range(len(trans_game_1)):
+                    del trans_game_1[offset][i]
+                    offset += 1
+                while ct.count('N') == len(trans_game_1)-1 and offset in range(len(trans_game_1)):
+                    del trans_game_1[offset][pov]
+                    offset += 1  
+    else:
+        break
+
+print('\nUndominated Strategies for Player 2')
+for row in trans_game_1:
+    print(row)
+    
+trans_game_2 = [[trans_game_1[y][x] for y in range(len(trans_game_1))] for x in range(len(trans_game_1[0]))]
+print('\n')
+for row in trans_game_2:
+    print(row)
+
+for pov in range(1, len(trans_game_2[-1])):
+    if pov+1 < len(trans_game_2[-1])-1:
+        for i in range(pov+1, len(trans_game_2[-1])-1):    
+            print("\nComparing all with column", pov)
+            ct = []
+            offset = 0
+            for row in range(1, len(trans_game)-1):
+                if trans_game_2[row][pov][0] > trans_game_2[row][i][0]:
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == len(trans_game_2)-1 and offset in range(len(trans_game_2)):
+                    del trans_game_2[offset][i]
+                    offset += 1
+                while ct.count('N') == len(trans_game_2)-1 and offset in range(len(trans_game_2)):
+                    del trans_game_2[offset][pov]
+                    offset += 1              
+
+    elif COL_SIZE > pov+1 > len(trans_game_2[-1])-1:
+        for i in range(len(trans_game_2[-1])-1, pov+1):    
+            print("\nComparing all with column", pov)
+            ct = []
+            offset = 0
+            for row in range(1, len(trans_game_2)-1): 
+                if trans_game_2[row][pov-1][0] > trans_game_2[row][i][0]:
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == len(trans_game_2)-1 and offset in range(len(trans_game_2)):
+                    del trans_game_2[offset][i]
+                    offset += 1
+                while ct.count('N') == len(trans_game_2)-1 and offset in range(len(trans_game_2)):
+                    del trans_game_2[offset][pov]
+                    offset += 1  
+    else:
+        break
+
+print('\nUndominated Strategies for Player 1')
+for row in trans_game_2:
+    print(row)
+
+#The real question is how to make the program reiterate...
