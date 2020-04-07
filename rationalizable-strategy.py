@@ -1,6 +1,3 @@
-# Try to write a program to find the set of rationalizable strategies in Chapter 7 games (Game Theory)
-
-#Note: Very raw code I am still trying to figure out
 # Create a grid/matrix
 
 COL_SIZE = 5
@@ -74,6 +71,7 @@ for pov in range(1, len(game[-1])):
     elif COL_SIZE > pov+1 > len(game[-1])-1:
         for i in range(len(game[-1])-1, pov+1): #hidden error: i=4 in range (4,3)     
             print("\nComparing all with column", pov) #hidden error: should change this to player's choice rather than column tag
+            #this is why the use of len(game[-1]) is quite consistent throughout
             ct = []
             offset = 0
             for row in range(1, len(game[-1])+1): #hidden error: counting the number of columns, not rows
@@ -82,10 +80,10 @@ for pov in range(1, len(game[-1])):
                 else:
                     ct.append('N')
                     
-                while ct.count('Y') == 4 and offset in range(len(game[-1])):
+                while ct.count('Y') == 4 and offset in range(len(game[-1])+1):
                     del game[offset][i]
                     offset += 1
-                while ct.count('N') == 4 and offset in range(len(game[-1])):
+                while ct.count('N') == 4 and offset in range(len(game[-1])+1):
     #                print('Delete strategy', game[0][pov], 'because it is dominated.')
                     del game[offset][pov]
                     offset += 1  
@@ -94,4 +92,3 @@ for pov in range(1, len(game[-1])):
 print('\n')
 for row in game:
     print(row)
-
