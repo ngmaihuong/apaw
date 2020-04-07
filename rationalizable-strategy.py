@@ -52,22 +52,46 @@ for row in game:
 #i = pov + 1
 
 for pov in range(1, len(game[-1])):
-    for i in range(pov+1, len(game[-1])-1): #hidden error: i=4 in range (4,3)     
-        print("\nComparing all with column", pov)
-        ct = []
-        offset = 0
-        for row in range(1, len(game[-1])):
-            if game[row][pov][1] > game[row][i][1]:
-                ct.append('Y')
-            else:
-                ct.append('N')
-                
-            while ct.count('Y') == 4 and offset in range(len(game[-1])):
-                del game[offset][i]
-                offset += 1
-            while ct.count('N') == 4 and offset in range(len(game[-1])):
-                del game[offset][pov]
-                offset += 1
+    if pov+1 < len(game[-1])-1:
+        for i in range(pov+1, len(game[-1])-1): #hidden error: i=4 in range (4,3)     
+            print("\nComparing all with column", pov)
+            ct = []
+            offset = 0
+            for row in range(1, len(game[-1])):
+                if game[row][pov][1] > game[row][i][1]:
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == 4 and offset in range(len(game[-1])):
+                    del game[offset][i]
+                    offset += 1
+                while ct.count('N') == 4 and offset in range(len(game[-1])):
+    #                print('Delete strategy', game[0][pov], 'because it is dominated.')
+                    del game[offset][pov]
+                    offset += 1              
+
+    elif COL_SIZE > pov+1 > len(game[-1])-1:
+        for i in range(len(game[-1])-1, pov+1): #hidden error: i=4 in range (4,3)     
+            print("\nComparing all with column", pov) #hidden error: should change this to player's choice rather than column tag
+            ct = []
+            offset = 0
+            for row in range(1, len(game[-1])+1): #hidden error: counting the number of columns, not rows
+                if game[row][pov-1][1] > game[row][i][1]: #hidden error: pov = 3, i=3. Comparing the same column.
+                    ct.append('Y')
+                else:
+                    ct.append('N')
+                    
+                while ct.count('Y') == 4 and offset in range(len(game[-1])):
+                    del game[offset][i]
+                    offset += 1
+                while ct.count('N') == 4 and offset in range(len(game[-1])):
+    #                print('Delete strategy', game[0][pov], 'because it is dominated.')
+                    del game[offset][pov]
+                    offset += 1  
+    else:
+        break
 print('\n')
 for row in game:
     print(row)
+
