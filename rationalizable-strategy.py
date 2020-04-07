@@ -54,7 +54,7 @@ for pov in range(1, len(game[-1])):
             print("\nComparing all with column", pov)
             ct = []
             offset = 0
-            for row in range(1, len(game[-1])):
+            for row in range(1, len(game)):
                 if game[row][pov][1] > game[row][i][1]:
                     ct.append('Y')
                 else:
@@ -70,20 +70,21 @@ for pov in range(1, len(game[-1])):
 
     elif COL_SIZE > pov+1 > len(game[-1])-1:
         for i in range(len(game[-1])-1, pov+1): #hidden error: i=4 in range (4,3)     
-            print("\nComparing all with column", pov) #hidden error: should change this to player's choice rather than column tag
-            #this is why the use of len(game[-1]) is quite consistent throughout
+            print("\nComparing all with column", pov)
+            #hidden error: should change this to player's choice rather than the column index
             ct = []
             offset = 0
-            for row in range(1, len(game[-1])+1): #hidden error: counting the number of columns, not rows
+            for row in range(1, len(game)): #hidden error: counting the number of columns, not rows.
+                #This is why the use of len(game[-1]) is quite consistent throughout (FIXED)
                 if game[row][pov-1][1] > game[row][i][1]: #hidden error: pov = 3, i=3. Comparing the same column.
                     ct.append('Y')
                 else:
                     ct.append('N')
                     
-                while ct.count('Y') == 4 and offset in range(len(game[-1])+1):
+                while ct.count('Y') == 4 and offset in range(len(game)):
                     del game[offset][i]
                     offset += 1
-                while ct.count('N') == 4 and offset in range(len(game[-1])+1):
+                while ct.count('N') == 4 and offset in range(len(game)):
     #                print('Delete strategy', game[0][pov], 'because it is dominated.')
                     del game[offset][pov]
                     offset += 1  
