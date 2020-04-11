@@ -44,6 +44,12 @@ game[4].extend(P1_4)
 for row in game:
     print(row)
 
+def transpose(grid): 
+    new_grid = [[grid[y][x] for y in range(len(grid))] for x in range(len(grid[0]))]
+    a, b = grid[0][0].index(1), grid[0][0].index(2)
+    grid[0][0][b], grid[0][0][a] = grid[0][0][a], grid[0][0][b]
+    return new_grid    
+    
 #Find dominant strategies for P2
 
 for pov in range(1, len(game[-1])):
