@@ -1,6 +1,5 @@
 #Name: Huong (Sierra) Nguyen
 #Course: CIS 2300
-#Professor: Trevor Moores
 #Date last updated: 10/4/2020
 #Assignment 2: Conway's Game of Life
 
